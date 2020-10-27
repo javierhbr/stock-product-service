@@ -1,0 +1,59 @@
+GET http://localhost:3001/api/stock/3000
+accept-language: en-US
+
+###
+POST http://localhost:3001/api/stock/consume
+Content-Type: application/json
+accept-language: en-US
+
+{
+  "applyForce": false,
+  "products": [
+    {
+      "id": "3000",
+      "quantity" : 5
+    },
+    {
+      "id": "4000",
+      "quantity" : 3
+    }
+  ]
+}
+
+###
+POST http://localhost:3001/api/stock/consume
+Content-Type: application/json
+accept-language: en-US
+
+{
+  "applyForce": false,
+  "products": [
+    {
+      "id": "6000",
+      "quantity" : 5
+    },
+    {
+      "id": "9000",
+      "quantity" : 30
+    }
+  ]
+}
+
+###
+POST http://localhost:3001/api/stock/consume
+Content-Type: application/json
+accept-language: en-US
+
+{
+  "applyForce": true,
+  "products": [
+    {
+      "id": "6000",
+      "quantity" : 5
+    },
+    {
+      "id": "9000",
+      "quantity" : 30
+    }
+  ]
+}

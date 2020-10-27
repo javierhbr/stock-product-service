@@ -1,0 +1,36 @@
+version: '3'
+services:
+  adidas-mongo-db:
+    image: 'mongo:4.0.4'
+    container_name: product-stock-mongo-db
+    restart: always
+    ports:
+        - '27018:27017'
+#    volumes:
+#      - ./mongo-seed:/mongo-seed
+#    command: mongorestore --host='localhost:27017' --nsInclude=adidas.productstocks /mongo-seed/dump
+
+#  mongosetup:
+#    image: mongo:4.0.4
+#    depends_on:
+#      - adidas-mongo-db
+#    restart: "no"
+#    entrypoint: [ "bash", "mongorestore --host='localhost:27017' --nsInclude=adidas.productstocks /mongo-seed/dump"]
+
+#  mongo_seed:
+#    image: 'mongo:4.0.4'
+#    container_name: mongo_seed
+#    links:
+#      - adidas-mongo-db
+#    volumes:
+#      - ./mongo-seed:/mongo-seed
+##    command:
+##      /mongo-seed/import.sh
+#    entrypoint: [ "bash", "sleep 10 && mongorestore --host='localhost:27017' --nsInclude=adidas.productstocks /mongo-seed/dump"]
+
+  adidas-product-engine:
+    container_name: adidas-product-engine
+    image: adichallenge/adichallenge:product-engine
+    restart: always
+    ports:
+      - '3000:3000'

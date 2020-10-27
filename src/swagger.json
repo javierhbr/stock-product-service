@@ -1,0 +1,182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Javier Benavides Challenge",
+    "description": "Adidas Challende",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3001",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Stock",
+      "description": "API products stock"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/stock/consume": {
+      "post": {
+        "tags": [
+          "Stock"
+        ],
+        "description": "consume product stock given a list of product and quatity",
+        "parameters": [
+          {
+            "name": "accept-language",
+            "in": "header",
+            "required": true,
+            "description": "accept-language ex, en-US",
+            "type": "string"
+          },
+          {
+            "name": "products",
+            "in": "body",
+            "description": "Products to consume stock",
+            "schema": {
+              "$ref": "#/definitions/ConsumeProduct"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of product consumption",
+            "schema": {
+              "$ref": "#/definitions/ConsumeProductResponse"
+            }
+          }
+        }
+      }
+    },
+    "/stock/{productId}": {
+      "parameters": [
+        {
+          "name": "productId",
+          "in": "path",
+          "required": true,
+          "description": "product ID to get the price and stock.",
+          "type": "string"
+        },
+        {
+          "name": "accept-language",
+          "in": "header",
+          "required": true,
+          "description": "accept-language ex, en-US",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Get stock and price given a product ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductPriceAndStock"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ProductPriceAndStock": {
+      "required": [
+        "applyForce",
+        "companies"
+      ],
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "price": {
+              "type": "number"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ConsumeProduct": {
+      "required": [
+        "applyForce",
+        "products"
+      ],
+      "properties": {
+        "applyForce": {
+          "type": "boolean"
+        },
+        "products": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "ConsumeProductResponse": {
+      "properties": {
+        "status": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "number"
+              },
+              "currency": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"adidas.productstocks"},{"v":{"$numberInt":"2"},"key":{"productId":{"$numberInt":"1"}},"name":"productId_1","ns":"adidas.productstocks","background":true}],"uuid":"1450c875cb624eecab0df07913f9c68a","collectionName":"productstocks"}
