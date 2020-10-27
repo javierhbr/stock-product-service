@@ -8,6 +8,10 @@
 From root folder of the project:
 `docker-compose up --build`
 
+##### Load Data To MongoDB
+
+Execute ``./mongo-seed/import.sh``
+
 ### 2 - Run Node application
 
 From root folder of the project:
@@ -15,6 +19,7 @@ From root folder of the project:
 `npm install`
 
 `npm start`
+
 
 ### Run with PM2
 Install pm2 
